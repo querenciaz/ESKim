@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리스트와 테이블</title>
+</head>
+
+<body>
+
+    <!-- ol태그, ordered list의 약자 리스트 번호 붙여서 나열해준다. -->
+    <ol>
+        <!-- li는, list item의 약자 ol태그안에 나열될 리스트 요소 -->
+        <li>제육볶음</li>
+        <li>돈까스</li>
+        <li>잔치국수</li>
+
+    </ol>
+
+    <!-- ul태그는, unordered list의 약자 숫자없이 리스트를 나열해준다. -->
+    <ul>탕수육</ul>
+    <ul>깐풍기</ul>
+    <ul>만두</ul>
+    <ul>팔보채</ul>
+
+    <!-- table, 행열을 이용한 격자 구조를 만들 수 있다. -->
+    <!-- tr: table row (한행), td: table data (tr 태그내 요소들) -->
+    <table border="1">
+        <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>700</td>
+            <td>800</td>
+        </tr>
+    </table>
+    <br>
+
+    <table border="2">
+        <tr>
+            <!-- table header -->
+            <th>식당</th>
+            <th>추천메뉴</th>
+            <th>별점</th>
+        </tr>
+        <tr>
+            <td>금성냉면</td>
+            <td>고등어백반</td>
+            <td>4점</td>
+        </tr>
+        <tr>
+            <td>맛고을</td>
+            <td>감치찌개</td>
+            <td>5점</td>
+        </tr>
+        <tr>
+            <td>이모네부대찌개</td>
+            <td>부대찌개</td>
+            <td>150점</td>
+        </tr>
+        <tr>
+            <td>힘들땐</td>
+            <td>뼈다귀해장국</td>
+            <td>250점</td>
+        </tr>
+
+
+    </table>
+
+    <!-- 정석 테이블 -->
+    <table border="3">
+        <!-- 테이블명 -->
+        <caption>
+            맛집 리스트
+        </caption>
+
+        <thead>
+            <tr>
+                <th>식당</th>
+                <th>추천메뉴</th>
+                <th>별점</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>힘들땐</td>
+                <td>뼈다귀해장국</td>
+                <td>뼈다귀해장국</td>
+                <td>5점</td>
+            </tr>
+
+            <tr>
+                <td>리원</td>
+                <td>간짜장</td>
+                <td>4점</td>
+            </tr>
+        </tbody>
+        <br>
+
+    </table>
+    <br>
+    <br>
+
+    <!-- rowspan과 colspan -->
+    <table border="2">
+        <tr>
+            <th>1열</th>
+            <th>2열</th>
+            <th>3열</th>
+        </tr>
+
+        <tr>
+            <td rowspan="2">1행 1열</td>
+            <td>1행 2열</td>
+            <td>1행 3열</td>
+        </tr>
+
+        <tr>
+            <!-- 윗줄에서 이미 rowspan을 했기 떄문에 나머지 두개만 필요 -->
+            <td>2행 2열</td>
+            <td>2행 3열</td>
+        </tr>
+
+        <tr>
+            <td colspan="3">3행 1열</td>
+        </tr>
+    </table>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
