@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이템배치</title>
+
+
+
+<style>
+    /* div{
+        border: 1px solid;
+    } */
+
+    .item-box{
+        width: 1000px;
+        border: 1px solid;
+        display: flex;
+        flex-wrap: wrap;
+        /* space-between: 양끝에 여백 없이 동일한 간격으로 쪼갠다. */
+        /* space-around: 동일한 간격으로 쪼개고, 양 끝 여백은 간격의 절반만큼 부여 */
+        /* space-evenly: 동일한 간격으로 쪼개고, 양 끝 여백도 간격과 동일 */
+        justify-content: space-around;
+    }
+
+    .item-box > div{
+        width: calc(1000px / 3 - 20px);
+        height: 400px;
+        border: 0;
+        box-shadow: 1px 1px 4px 1px aqua;
+        border-radius: 20px;
+        overflow: hidden;
+
+        margin-bottom: 20px;
+    }
+
+    .top{
+        height: 60%;
+    }
+
+    .bottom{
+        height: 40%;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+<body>
+    <div class="item-box">
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://qi-o.qoo10cdn.com/goods_image_big/7/0/6/9/6115757069_l.jpg" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://img.danawa.com/prod_img/500000/692/086/img/6086692_1.jpg?_v=20230323094710" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://img.danawa.com/prod_img/500000/412/234/img/5234412_1.jpg?_v=20210831134339" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://gdimg.gmarket.co.kr/695559766/still/280?ver=1681185942" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNuhcx1bs8Tz7g9vb87uhD6ZtGptKlTTXEsw&usqp=CAU" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="data:image/jpeg;base64,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" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+</body>
+</html>
