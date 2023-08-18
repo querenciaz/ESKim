@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터</title>
+
+
+    <style>
+        img {
+            width: 400px;
+        }
+
+        .f-blur {
+            /* 뿌열게 만드는 필터 */
+            filter: blur(5px);
+        }
+
+        .f-contrast {
+            filter: contrast(200%);
+        }
+
+        .f-graycale {
+            /* 흑백으로 만든다. 100%면 완전 흑백 */
+            filter: grayscale(70%);
+        }
+
+        .f-brightness {
+            /* 밝기 설정, 낮을수록 어두워짐 */
+            filter: brightness(250%);
+        }
+
+        .f-coustom {
+            /* 한번에 여러개의 필터를 적용 시킬 수있다. */
+            filter: brightness(50%) contrast(200%);
+        }
+
+        .item-box {
+            width: 1300px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .item-box>img:hover {
+            filter: blur(0px) brightness(150%);
+        }
+
+        .btn {
+            background-color: orange;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: inline-block;
+            /* 해당 div는 inline으로 하면서 div 내부요소를 flex로 정렬 하고자할때 사용 */
+            display: inline-flex;
+            cursor: pointer;
+            /* 드래고 방지 4총사 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .btn:hover {
+            /* background-color: rgb(192, 125, 0); */
+            /* 이미지 태그가 아니여도 적용된다. */
+            filter: brightness(110%);
+        }
+
+        html {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    불러
+    <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+    </div>
+
+    대조
+    <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-contrast"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+    </div>
+
+    흑백
+    <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-graycale"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+    </div>
+
+    밝기
+    <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-brightness"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+    </div>
+
+    커스텀
+    <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-coustom"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+    </div>
+
+    <div class="item-box">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+        <img class="f-blur"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMs9iTAGuCIJXwhNwT2xglwOXcp0Aan-53FQ&usqp=CAU"
+            alt="">
+    </div>
+    <div class="btn">로그인/회원가입</div>
+
+
+
+
+
+</body>
+
+</html>

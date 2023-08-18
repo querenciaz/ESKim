@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document객체</title>
+
+
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            background-color: azure;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <p id="count">0</p>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box" style="width: 300px; height: 300px;"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <br>
+    <button onclick="f_click()">클릭</button>
+
+
+
+    <script>
+
+        function f_click() {
+            // document 객체 = DOM(document object model) 객체.
+            // 현재 페이지의 태그 요소에 접근하고 조작할 수 있음.
+            let v_ptag = document.getElementById("count");
+            console.log(v_ptag);
+
+            // .innterHTML
+            //  해당 태그 내부에 해당한다.
+            console.log(v_ptag.innerHTML);
+
+            // 태그 내부 변경도 가능하다.
+            v_ptag.innerHTML = parseInt(v_ptag.innerHTML) + 1;
+
+        }
+
+        // 랜덤 RGB 문자열을 리턴해주는 함수
+        // EX) rgb(135, 25, 23)
+        // rgb의 값은 0~255 이다.
+
+        function f_rgbColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return "rgb(" + r + ", " + g + ", " + b + ")";
+
+        }
+
+        console.log(f_rgbColor());
+
+        // function ranNum(){
+        //     return Math.floor(Math.random() * 256)
+        // }
+
+        // function f_rgbColor() {
+        //     return "rgb(" + ranNum() + "," + ranNum() + "," + ranNum() + ")"
+        // }
+
+        // console.log(f_rgbColor());
+
+
+
+                // -- 8/10(목) --//
+                let v_box = document.getElementsByClassName("box");
+        //해당 클래스를 가지고 있는 태그들을 담고있는 배열
+        console.log(v_box);
+        console.log(v_box.length);
+        //html 코드상 위에서부터 아래 방향으로
+        //차례대로 배열에 담겨있다.
+        console.log(v_box[0]);
+
+        // 해당 태그에 적용된 스타일 꺼내보기
+        console.log(v_box[0].style.width); //출력이 되지않는다. 0번 인덱스의 box는 css에서 지정한 style이라서 안 됨
+        //태그.style은 해당 태그의 style 속성(attribute)에 접근하는 것
+        console.log(v_box[2].style.width); //스크립트 단에서 style.width를 하면 html에서 지정한 스타일값을 불러옴
+        // 스크립트에서는 background-color나 padding-top 같은 스타일 명에 대해 
+        // 카멜식인 backgroundColor, paddingTop 과 같이 사용해야 함.
+        console.log(v_box[2].style.backgroundColor);
+
+        // 값을 가져오지 못하더라도 값을 줄 수는 있다.
+        v_box[2].style.width = "200px"; // 문자열로 스타일을 적용시킨다.
+        v_box[2].style.backgroundColor = "rgb(255, 0, 0)";
+
+        console.log(v_box[2].style.backgroundColor);
+
+        console.log("============================");
+
+        // 클래스가 하나뿐인 태그 불러오기
+        let v_title = document.getElementsByClassName("title");
+        // 하나일지라도 배열에 담긴다.
+        console.log(v_title);
+        // 원하는 값을 뽑아내려면 인덱스 번호로 뽑아내야 함
+        console.log(v_title[0]);
+
+        console.log(v_title[0].style.backgroundColor); // css로 적용된 스타일 값이라 출력되지 않음.
+        //CSS로 적용된 스타일 가져오기
+        let cssTitle = getComputedStyle(v_title[0]);
+        console.log(cssTitle);
+        console.log(cssTitle.backgroundColor);
+
+        
+        function f_click() {
+            //  document 객체 = DOM 객체(Document Object Model) 객체
+            // 현재 페이지의 태그 요소에 접근하고 조작할 수 있음.
+            let v_ptag = document.getElementById("count");
+            console.log(v_ptag);
+
+            // .innerHTML
+            // 해당 태그 내부에 해당한다.?....
+            console.log(v_ptag.innerHTML);
+
+            // 태그 내부 변경도 가능
+            v_ptag.innerHTML = parseInt(v_ptag.innerHTML) + 1;
+            
+            //클릭 시 클래스가 box의 색깔이 랜덤하게 변할 수 있도록 만들기
+            // v_box[0].style.backgroundColor = f_rgbColor2();
+            // v_box[1].style.backgroundColor = f_rgbColor2();
+            // v_box[2].style.backgroundColor = f_rgbColor2();
+            // v_box[3].style.backgroundColor = f_rgbColor2();
+            // v_box[4].style.backgroundColor = f_rgbColor2();
+
+            // for문 이용해서 코드 간단하게 만들기
+            for(let i=0; i < v_box.length; i++) {
+                v_box[i].style.backgroundColor = f_rgbColor2();
+            }
+        }
+
+    </script>
+</body>
+
+function f_regist(){
+    // ... (이전 코드부분은 그대로 유지)
+
+    let reasonCheckedText = [];
+    for (let i = 0; i < v_reason.length; i++) {
+        if (v_reason[i].checked) {
+            let reasonValue = v_reason[i].value;
+            let reasonText = f_cgReasonWithForLoop(reasonValue);
+            reasonCheckedText.push(reasonText);
+        }
+    }
+
+    // ... (이전 코드부분은 그대로 유지)
+
+    v_result.innerHTML = resultText;
+}
+
+// 체크박스 값에 대한 한글 변환 함수 (for 문 활용)
+function f_cgReasonWithForLoop(p_reason) {
+    let reasonText = p_reason;
+    
+    // for 문을 사용하여 체크박스 값에 대응하는 한글 문자열로 변환
+    for (let key in reasonTextMap) {
+        if (reasonTextMap.hasOwnProperty(key) && key === p_reason) {
+            reasonText = reasonTextMap[key];
+            break;
+        }
+    }
+    
+    return reasonText;
+}

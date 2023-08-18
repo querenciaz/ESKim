@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체</title>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+    <script>
+        // 배열 
+
+        // 배열의 선언
+        // 자바와는 달리 배열의 사이즈가 유동적이며 담을 수 있는 타입도 자유롭다.
+        // 아무것도 안들어 있는 배열 객체
+        let myArray = [];
+
+        console.log(myArray);
+        // 배열의 크기 (들어있는 개수) 확인
+        console.log(myArray.length);
+
+        // 값 넣기
+        myArray.push(18)
+        console.log(myArray);
+
+        myArray.push("망치");
+        console.log(myArray);
+
+        // 인덱싱(들어있는 값을 꺼내오는거)
+        console.log(myArray[0]);
+        console.log(myArray[1]);
+        console.log(myArray[2]);
+
+        // 해당 인덱스에 값 넣기
+        myArray[2] = 1818;
+        console.log(myArray);
+
+        myArray[10] = 181818;
+        console.log(myArray);
+
+        console.log(myArray[3]);
+
+        // push를 까먹었다면?
+        // myArray.push(28);
+        myArray[myArray.length] = 28;
+        console.log(myArray);
+
+        // for문으로 배열 순회
+        for (let i = 0; i < myArray.length; i++) {
+            console.log(myArray[i]);
+        }
+
+        // for or문
+        // []
+        for (let item of myArray) {
+            console.log(item);
+        }
+
+        // 값을 넣은 배열 선언
+        let items = [18, 28, "주먹", 7];
+        console.log(items);
+
+        // 배열 내 요소 삭제
+        // 인덱스 a부터 b개 삭제
+        items.splice(2, 1);
+        console.log(items);
+
+        // JSON 객체 (JavaScript Object Notation)
+        let personES = {}; // 빈 JSON 객체
+
+        personES = {
+            "name": "킹은식",
+            "age": 21,
+            "songs": ["가시", "떙벌", "Flick"]
+        };
+        console.log(personES);
+
+        // JSON 객체 내 값 꺼내보기
+        console.log(personES.name);
+        console.log(personES["name"]);
+
+        console.log(personES.age);
+
+        // Flick 꺼내보기
+        console.log(personES.songs[2]);
+
+        // key값이 변수에 담긴 경우
+        const keyword = "age";
+        console.log(personES.keyword); // 못 꺼냄
+
+        console.log(personES[keyword]); // 꺼낼 수 있음
+
+        // key값에 담긴 value값 수정 가능
+        personES.age = 23;
+        personES["name"] = "킹은식"
+        console.log(personES);
+
+        // songs에 가을아침을 추가해보시죠
+        personES.songs.push('returns');
+        console.log(personES);
+
+        // JSON 객체에 속성(Key-Value 한쌍) 추가
+        personES.pet = "호랑이";
+        personES["height"] = 215;
+        console.log(personES);
+
+        // JSON 객체 <-> String 변환
+        // JSON to String
+        let StringES = JSON.stringify(personES);
+        console.log(StringES);
+
+        // String to JSON 바꾸기
+        let JSONES = JSON.parse(StringES);
+        console.log(JSONES);
+
+        console.log(StringES["name"]);
+        console.log(JSONES.name);
+
+        const personTY = {
+            "name": "태연",
+            "age": 35,
+            "songs": ["weekend", "다시만난세계", "Fine"]
+        };
+
+        const company = {
+            "name": "SM",
+            "artists": [personES, personTY]
+        };
+
+        // company를 통해 "다시만난세계"를 꺼내보기
+        console.log(company["artists"][1]["songs"][1]);
+        console.log(company.artists[1].songs[1]);
+
+        // 자바스크립트로 객체지향 프로그래밍하기
+        const MyMath = {
+            // 절대값 메소드
+            "abs": function (num) {
+                if(num < 0) {
+                    num *= -1;
+                }
+                return num;
+            },
+
+            // 내림
+            "floor": (num) => {
+                return parseInt(num);
+            }
+            
+
+        };
+
+        console.log(MyMath.abs(-10));
+        console.log(MyMath.floor(3.1415));
+
+        // 자바처럼 객체 만들어서 쓰기
+        const Human = function(p_name, p_age){
+            this.name = p_name;
+            this.age = p_age;
+            
+            this.getName = function(){
+                return this.name;
+            }
+            this.setName = function(p_nm){
+                this.name = p_nm;
+            }
+
+            this.getAge = () => {
+                return this.age;
+            }
+
+            this.setAge = (p_ag) => {
+                this.age = p_ag
+            }
+        };
+
+        let jobbang = new Human('세균맨', 21);
+        console.log(jobbang);
+
+        jobbang.setName('세균소년');
+        console.log(jobbang.getName());
+
+        let jjinbbang = new Human('찐빵맨', 22);
+        console.log(jjinbbang);
+
+        console.log(typeof jobbang);
+        console.log(typeof personES);
+
+        // 클래스를 통해 만든 JSON 객체 또한 String 변환가능
+        let strJobbang = JSON.stringify(jobbang);
+        console.log(strJobbang);
+
+        let jsonjobbang = JSON.parse(strJobbang);
+        console.log(jsonjobbang);
+
+        // 데이터를 주고 받는 경우 JSON.stringify와
+        // JSON.parse을 하기 떄문에, 메소드가 사라지는 것에 대해 걱정 하지마라
+
+        // 함수를 포함 시키는 JSON 객체의 경우에는 해당 스크립트 내에서
+        // 객체지향적으로 사용하기 위해 만들어 쓴다.
+
+        // 배열에 JSON 객체 담기
+        let peopleArray = [personES, personTY];
+        peopleArray.push(jobbang);
+        peopleArray.push(jjinbbang);
+
+        //배열 또한 문자열로 변환이 가능하다.
+        let strArray = JSON.stringify(peopleArray);
+        console.log(strArray);
+
+        let jsonArray = JSON.parse(strArray);
+        console.log(jsonArray);
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

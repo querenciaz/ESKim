@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표준몸무게계산기</title>
+
+
+    <style>
+        .container {
+            width: 700px;
+            height: 500px;
+            border: 1px solid black;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px 0px rgb(93, 93, 253);
+            border: 0;
+        }
+
+        .header {
+            margin-top: 30px;
+            margin-bottom: 100px;
+            margin-left: 30px;
+        }
+
+        .main {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            justify-content: center;
+        }
+
+        .main>div:nth-child(1) {
+            margin-right: 25px;
+        }
+
+        .main>div:nth-child(1)>input {
+            width: 250px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        .main>div:nth-child(2) {
+            margin-left: 25px;
+        }
+
+        .main>div:nth-child(2)>input {
+            width: 250px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        .genderss {
+            margin-bottom: 30px;
+            margin-left: 30px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn>button {
+            position: fixed;
+            width: 600px;
+            height: 70px;
+
+            border: 0;
+            border-radius: 15px;
+            background-color: rgb(181, 232, 255);
+            cursor: pointer;
+        }
+
+        .btn>button:hover {
+            filter: brightness(90%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>표준 체중 계산기</h1>
+        </div>
+
+        <div class="main">
+            <div>
+                <p>키(cm):</p>
+                <input type="text" id="height">
+            </div>
+
+            <div>
+                <p>체중(kg):</p>
+                <input type="text" id="width">
+            </div>
+
+        </div>
+
+
+        <div class="genderss">
+            <td>
+                남성 <input type="radio" name="gender" value="male" checked>
+            </td>
+
+            <td>
+                여성 <input type="radio" name="gender" value="female">
+            </td>
+        </div>
+
+        <div class="btn">
+            <button id="btns" onclick="f_click()">계산하기</button>
+            <h2 id="result">"결과"</h2>
+        </div>
+
+    </div>
+    <script>
+        const v_height = document.getElementById("height");
+        const v_width = document.getElementById("width");
+        const v_result = document.getElementById("result");
+        const v_gender = document.getElementsByName("gender");
+    
+        function f_click() {
+            const heights = parseFloat(v_height.value) / 100;
+            const widths = parseFloat(v_width.value);
+    
+            let genderChecked = "";
+            for (let i = 0; i < v_gender.length; i++) {
+                if (v_gender[i].checked) {
+                    genderChecked = v_gender[i].value;
+                }
+            }
+    
+            let normalWeight = 0;
+    
+            if (genderChecked === "male") {
+                normalWeight = 22 * (heights * heights);
+            } else if (genderChecked === "female") {
+                normalWeight = 21 * (heights * heights);
+            }
+    
+            const v_bmi = (widths / normalWeight) * 100;
+    
+            v_rs.innerHTML = "적합한 표준 체중은 " + normalWeight + "kg 이며,";
+            v_rs.innerHTML += "<br>현재 비만도는 " + f_fat(v_bmi) + "입니다.";
+        }
+    
+        function f_fat(v_bmi) {
+            if (v_bmi < 90) {
+                return "저체중"
+            } else if (v_bmi < 110 && v_bmi >= 90) {
+                return "정상 체중"
+            } else if (v_bmi >= 110 && v_bmi < 120) {
+                return "과체중"
+            } else if (v_bmi >= 120 && v_bmi < 130) {
+                return "경도 비만"
+            } else if (v_bmi >= 130 && v_bmi < 160) {
+                return "중정도 비만"
+            } else {
+                return "고도 비만"
+            }
+        }
+    
+    
+    
+    
+    
+    </script>
+
+
+
+
+</body>
+
+</html>

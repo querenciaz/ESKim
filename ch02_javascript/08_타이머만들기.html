@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머배너만들기</title>
+    <!-- 8월 14일 타이머만들기 8월16일 보충-->
+</head>
+
+<body>
+
+    <div id="clock"></div>
+
+    <button onclick="f_stop()">정지</button>
+
+
+
+
+    <script>
+
+        const v_clock = document.getElementById("clock");
+
+        function f_showTime() {
+            let v_date = new Date();
+
+            console.log("년: " + v_date.getFullYear());
+            console.log("월: " + (v_date.getMonth() + 1));  // 1월이면 0, 8월이면 7로 표기가 된다.
+            console.log("일: " + v_date.getDate());
+            console.log("요일: " + v_date.getDay());      // 일요일 0, 월요일 1, '''' 토요일 5로 표기가 된다.
+            console.log("시: " + v_date.getHours());
+            console.log("분: " + v_date.getMinutes());
+            console.log("초: " + v_date.getSeconds());
+
+            // 시, 분, 초가 한자리수면 앞에 0을 붙여주기 EX) 5 > 05
+            // 시간 앞자리 바꿔주기
+            let v_hour = v_date.getHours();
+            if (v_hour < 10) {
+                v_hour = "0" + v_hour;
+            }
+
+            // 삼항연산자를 사용하여 분도 앞자리 바꿔주기 EX )0 > 05
+            let v_min = (v_date.getMinutes() < 10) ? ("0" + v_date.getMinutes()) : (v_date.getMinutes());
+
+            // 초도 앞자리 바꿔주기 EX) 5 > 05
+            let v_sec = v_date.getHours();
+            if (v_sec < 10) v_sec = "0" + v_sec;
+
+            v_clock.innerHTML = v_hour + ":" + v_min + ":" + v_sec;
+
+
+            // setTimeout(f_showTime, 1000);   // v_timer 함수로 대체
+        }
+
+
+        // f_showTime();   // v_timer 함수로 대체
+
+        // 함수안에 본인자신 실행시키는 함수 = 재기함수로 무한반복
+        let v_timer = setInterval(f_showTime, 1000);  // 1초간격으로 실행해라
+
+        // 스탑시켜주는 버튼
+        function f_stop() {
+            clearInterval(v_timer);
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

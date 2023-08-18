@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input태그</title>
+
+
+
+    <style>
+        table{
+            border: 1px solid black;
+        }
+        tr>td:nth-child(1) {
+            width: 120px;
+            background-color: rgb(174, 174, 255);
+        }
+
+        tr>td:nth-child(2) {
+            width: 300px;
+            background-color: azure;
+        }
+
+        input {
+            background-color: transparent;
+        }
+
+        input[type=text],
+        input[type=password] {
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>회원가입</h2>
+    <table>
+        <tr>
+            <td>아이디</td>
+            <td><input id="inputId" type="text" value=""></td>
+        </tr>
+
+        <tr>
+            <td>비밀번호</td>
+            <td><input id="inputPw" type="password"></td>
+        </tr>
+
+        <tr>
+            <td>비밀번호 재입력</td>
+            <td><input id="rePw" type="password"></td>
+        </tr>
+
+        <tr>
+            <td>성별</td>
+            <td>
+                남성<input type="radio" name="gender" value="male" checked>
+                여성<input type="radio" name="gender" value="female">
+            </td>
+        </tr>
+
+        <tr>
+            <td>비밀번호 힌트</td>
+            <td>
+                <select name="" id="hint">
+                    <option value="school">나의 초등학교 이름은?</option>
+                    <option value="like">내가 좋아하는 것은?</option>
+                    <option value="soccer">좋아하는 축구선수는?</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>사이트 방문사유</td>
+            <td>
+                지인 <input type="checkbox" value="friend" name="reason">
+                직장 <input type="checkbox" value="job" name="reason">
+                검색 <input type="checkbox" value="search" name="reason">
+                기타 <input type="checkbox" value="etc" name="reason">
+            </td>
+        </tr>
+
+        <tr>
+            <td>생년월일</td>
+            <td><input id="inputDate" type="date"></td>
+        </tr>
+
+        <tr>
+            <td>종아하는색</td>
+            <td><input id="inputColor" type="color"></td>
+        </tr>
+
+
+    </table>
+    <button onclick="f_regist()">회원가입</button>
+
+    <h2 id="result"></h2>
+
+
+
+
+
+
+    <script>
+
+
+        const dictionnary = 
+        {
+            "friend": "지인",
+            "job": "직장",
+            "search": "검색",
+            "etc": "기타"
+        };
+
+
+
+
+        // 다른걸 담으면 안되기 때문에 let 보다는 const를 사용함
+        const v_id = document.getElementById("inputId");
+        const v_pw = document.getElementById("inputPw");
+        const v_gender = document.getElementsByName("gender");
+        const v_hint = document.getElementById("hint");
+        const v_reason = document.getElementsByName("reason");
+        const v_date = document.getElementById("inputDate")
+        const v_color = document.getElementById("inputColor")
+        const v_repw = document.getElementById("rePw");
+        const v_result = document.getElementById("result");
+        
+
+        function f_regist(){
+            console.log(v_id.value);
+            console.log(v_pw.value);
+            console.log(v_repw.value);
+
+
+
+            // name으로 태그를 검색하면 배열로 가지고온다.
+            // 선택한 radio 버튼이 무엇인지 확인이 중요
+            console.log(v_gender);
+
+            console.log(v_gender[0].checked);
+            console.log(v_gender[1].checked);
+
+            let repwChecked = '';
+            if(v_pw.value == v_repw.value) {
+                console.log("비밀번호가 확인 되었습니다. ")
+            } else {
+                console.log("비밀번호가 틀렸습니다.")
+            }
+
+            let genderChecked = '';
+            for(let i = 0; i < v_gender.length; i++){
+                if(v_gender[i].checked) {
+                    // 체크 되어있는 input:radio
+
+
+                    console.log(result);
+                    genderChecked = result;
+                }
+            }
+
+            // select 박스에 선택된 option의 value확인
+            console.log(v_hint.value);
+
+            // checkbox 에 체크한 input 태그의 value 확안
+
+            var result = "";
+            let reasonChecked = [];
+            for(let i = 0; i < v_reason.length; i++) {
+                if(v_reason[i].checked) {
+
+
+                    switch(v_reason[i].value)
+                    {
+                        case "friend":
+                        result = "친구";
+                        break;
+
+                        case "job":
+                        result = "직장";
+                        break;
+
+                        case "search":
+                        result = "검색";
+                        break;
+                    }
+
+                    console.log(" v_reason[i]" + result);
+                    reasonChecked.push(result);
+                }
+
+            };
+
+            console.log(reasonChecked);
+
+            console.log(v_date.value);
+
+            console.log(v_color.value);
+
+
+            const colorValue = v_color.value;
+
+            v_result.innerHTML = "입력한 아이디: " + v_id.value;
+            v_result.innerHTML += "<br>입력한 비밀번호: " + v_pw.value;
+            v_result.innerHTML += "<br>성별은: " + f_cgGender(genderChecked);
+            v_result.innerHTML += "<br>사이트 방문 사유: " + f_arrayToString(reasonChecked);
+            v_result.innerHTML += "<br>좋아하는 색상: <span style=\"color:" + v_color.value +"\">" + v_color.value +"</span>";
+            
+        };
+
+
+        // 8월14일
+        // 사이트 방문사유 함수(쌤한테 배운거)
+        function f_arrayToString(p_array) {
+            let v_str = "";
+            for(let i = 0; i < p_array.length; i++) {
+                // for문의 맨 마지막의 경우엔 콤마 안붙이기
+                if(i == p_array.length - 1) {
+                    v_str += f_cgReason(p_array)[i]
+                }else{
+                    v_str += f_cgReason(p_array[i]) + ", ";
+                }
+            }
+            return v_str;
+        }
+
+        // 사이트 방문사유 영어 > 한글로 변환 (쌤한테 배운거)
+        function f_cgReason(p_reason){
+            if(p_reason == 'friend'){
+                return '지인';
+            }else if(p_reason == 'job'){
+                return '직장';
+            }else if(p_reason == 'search'){
+                return '검색';
+            }else if(p_reason == 'etc'){
+                return '기타';
+            }
+        }
+
+
+
+
+        function f_cgGender(p_gender) {
+            if(p_gender == 'male') {
+                return '남성';
+            }else if(p_gender == 'female') {
+                return '여성';
+            }
+        };
+    
+        function onclick() {};
+
+        const reasonMap = {
+                friend: '지인',
+                job: '직장',
+                search: '검색',
+                etc: '기타'
+            };
+
+            
+
+        
+        // console.log(v_id);
+        // console.log(v_id.value);
+        
+        // v_id.value = "ske"
+        
+        // v_id = document.getElementById("inputPw");
+
+
+        
+
+
+
+    </script>
+</body>
+
+</html>
